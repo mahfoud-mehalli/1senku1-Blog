@@ -45,8 +45,8 @@ function CreatePost({ isAuth }) {
     <div className="createPostPage">
       <div className="cpContainer">
         <h1>Create A Post</h1>
-        <TextField onChange={(event) => {setTitle(event.target.value);}} variant="outlined" label="Title" fullWidth />
-        <TextField onChange={(event) => {setDescription(event.target.value);}} variant="outlined" label="Post Description" fullWidth multiline />
+        <TextField required onChange={(event) => {setTitle(event.target.value);}} variant="outlined" label="Title" fullWidth />
+        <TextField required onChange={(event) => {setDescription(event.target.value);}} variant="outlined" label="Post Description" fullWidth multiline />
         <input type="file" onChange={handleFileUpload} />
         <Button onClick={createPost} variant="contained" size="large" type="submit" fullWidth>Create Post</Button>
       </div>
