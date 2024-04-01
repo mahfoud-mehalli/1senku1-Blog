@@ -9,6 +9,9 @@ function CreatePost({ isAuth }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [titleError, setTitleError] = useState(""); // State to hold title error message
+  const [descriptionError, setDescriptionError] = useState(""); // State to hold description error message
+  const [fileError, setFileError] = useState(""); // State to hold file error message
 
   const handleFileUpload = (e) => {
     setSelectedFile(e.target.files[0]); // Setting the selected file to state
@@ -18,9 +21,37 @@ function CreatePost({ isAuth }) {
   let navigate = useNavigate();
 
   const createPost = async () => {
+    let errorOccurred = false;
 
-    const file = selectedFile ? selectedFile : null; // Handling case when file is not selected
-    const fileUrl = file ? URL.createObjectURL(file) : null; // Generating a URL for preview or other purposes
+    // Check if title is empty
+    if (!title) {
+      setTitleError("Title cannot be empty");
+      errorOccurred = true;
+    } else {
+      setTitleError("");
+    }
+
+    // Check if description is empty
+    if (!description) {
+      setDescriptionError("Description cannot be empty");
+      errorOccurred = true;
+    } else {
+      setDescriptionError("");
+    }
+
+    // Check if file is empty
+    if (!selectedFile) {
+      setFileError("Please select a file");
+      errorOccurred = true;
+    } else {
+      setFileError("");
+    }
+
+    if (errorOccurred) {
+      return; // Stop function execution if any error occurred
+    }
+
+    const fileUrl = URL.createObjectURL(selectedFile); // Generating a URL for preview or other purposes
     
     try {
       await addDoc(postsCollectionRef, {
@@ -39,16 +70,34 @@ function CreatePost({ isAuth }) {
     if (!isAuth) {
       navigate("/login");
     }
-  },);
+  }, [isAuth, navigate]); // Added dependencies for useEffect
 
   return (
     <div className="createPostPage">
       <div className="cpContainer">
         <h1>Create A Post</h1>
-        <TextField required onChange={(event) => {setTitle(event.target.value);}} variant="outlined" label="Title" fullWidth />
-        <TextField required onChange={(event) => {setDescription(event.target.value);}} variant="outlined" label="Post Description" fullWidth multiline />
+        <TextField
+          required
+          error={!!titleError}
+          helperText={titleError}
+          onChange={(event) => {setTitle(event.target.value);}}
+          variant="outlined"
+          label="Title"
+          fullWidth
+        />
+        <TextField
+          required
+          error={!!descriptionError}
+          helperText={descriptionError}
+          onChange={(event) => {setDescription(event.target.value);}}
+          variant="outlined"
+          label="Post Description"
+          fullWidth
+          multiline
+        />
         <input type="file" onChange={handleFileUpload} />
-        <Button onClick={createPost} variant="contained" size="large" type="submit" fullWidth>Create Post</Button>
+        {fileError && <p style={{ color: "red" }}>{fileError}</p>} {/* Display file error message */}
+        <Button onClick={createPost} variant="contained" size="large" fullWidth>Create Post</Button>
       </div>
     </div>
   );
