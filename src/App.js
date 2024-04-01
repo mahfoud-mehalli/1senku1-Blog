@@ -1,8 +1,9 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 import Login from "./pages/Login";
+import Header from "./pages/Header";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
@@ -20,21 +21,8 @@ function App() {
 
   return (
     <Router>
-      <header>
-        <h1>1senku1</h1>
-        <nav>
-          <Link to="/"> Home </Link>
-
-          {!isAuth ? (
-            <Link to="/login"> Login </Link>
-          ) : (
-            <>
-              <Link to="/createpost"> Create Post </Link>
-              <button onClick={signUserOut}> Log Out</button>
-            </>
-          )}
-        </nav>
-      </header>
+      
+      <Header isAuth={isAuth} signUserOut={signUserOut} />
       <Routes>
         <Route path="/" element={<Home isAuth={isAuth} />} />
         <Route path="/createpost" element={<CreatePost isAuth={isAuth} />} />
