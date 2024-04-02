@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button } from '@material-ui/core';
 import { addDoc, collection } from "firebase/firestore";
-import { db, auth } from "../firebase";
+import { db, auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
 function CreatePost({ isAuth }) {

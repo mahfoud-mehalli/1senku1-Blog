@@ -1,9 +1,9 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import CreatePost from "./pages/CreatePost";
-import Login from "./pages/Login";
-import Header from "./pages/Header";
+import Home from "./pages/Home/Home";
+import CreatePost from "./pages/CreatePost/CreatePost";
+import Login from "./pages/Login/Login";
+import Header from "./pages/Header/Header";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
@@ -21,7 +21,6 @@ function App() {
 
   return (
     <Router>
-      
       <Header isAuth={isAuth} signUserOut={signUserOut} />
       <Routes>
         <Route path="/" element={<Home isAuth={isAuth} />} />
