@@ -1,0 +1,80 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.home {
+    padding: 20px;
+}
+
+.postsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.post {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.title-delete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-delete h1 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.title-delete > div{
+    display: flex;
+}
+
+.title-delete button {
+    /* background-color: transparent; */
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.title-delete button:hover{
+    color: var(--white);
+}
+
+.deletePost{
+    background-color: #dd4b39;
+}
+
+.editPost{
+    background-color: #1a73e8;
+    margin-left: 8px;
+}
+
+.title-delete button svg {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+}
+
+.post-info > p {
+    margin-top: 10px;
+}
+
+.post h3 {
+    margin-top: 10px;
+    font-size: 0.9em;
+}
