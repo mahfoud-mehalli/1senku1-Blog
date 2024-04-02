@@ -3,6 +3,7 @@ import { TextField, Button } from '@material-ui/core';
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import './CreatePost.css'
 
 function CreatePost({ isAuth }) {
 

@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--black);
+    /* Change the background color as needed */
+    color: var(--white);
+    /* Change the text color as needed */
+    padding: 16px 40px;
+    /* Adjust padding as needed */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    color: var(--white);
+    /* Change link color as needed */
+    margin-right: 15px;
+    /* Adjust margin between links as needed */
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    color: var(--white);
+    padding: 8px 0px;
+    font-size: 16px;
+    transition: .3s ease-in-out;
+}
+
+button:hover {
+    color: dodgerblue;
+}

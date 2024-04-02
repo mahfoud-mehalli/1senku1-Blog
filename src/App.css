@@ -1,4 +1,21 @@
+:root{
+  --white: #f4f4f4 ;
+  --black: #060606 ;
+}
+
 .App {
   text-align: center;
 }
+*{
+  font-family: sans-serif;
+}
 
+a{
+  text-decoration: none;
+  transition: .3s ease-in-out;
+}
+
+a:hover{
+  color: dodgerblue;
+  text-decoration: none;
+}
