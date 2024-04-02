@@ -1,0 +1,30 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.loginPage {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.loginPage p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.login-with-google-btn {
+    background-color: #dd4b39;
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.login-with-google-btn:hover {
+    background-color: #c53727;
+    color: var(--white);
+}
