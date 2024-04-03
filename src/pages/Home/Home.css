@@ -13,6 +13,11 @@
     gap: 20px;
 }
 
+.postsContainer > h1{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 .post {
     background-color: var(--white);
     padding: 20px;
