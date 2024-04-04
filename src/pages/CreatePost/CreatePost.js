@@ -3,20 +3,20 @@ import { TextField, Button } from '@material-ui/core';
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import { storage } from "../../firebase";
+import { ref,uploadBytes, getDownloadURL } from 'firebase/storage'
+import { v4 } from "uuid";
 import './CreatePost.css'
 
 function CreatePost({ isAuth }) {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [imageUpload, setImageUpload] = useState(null);
   const [titleError, setTitleError] = useState(""); // State to hold title error message
   const [descriptionError, setDescriptionError] = useState(""); // State to hold description error message
   const [fileError, setFileError] = useState(""); // State to hold file error message
 
-  const handleFileUpload = (e) => {
-    setSelectedFile(e.target.files[0]); // Setting the selected file to state
-  };
 
   const postsCollectionRef = collection(db, "posts");
   let navigate = useNavigate();
@@ -41,7 +41,7 @@ function CreatePost({ isAuth }) {
     }
 
     // Check if file is empty
-    if (!selectedFile) {
+    if (!imageUpload) {
       setFileError("Please select a file");
       errorOccurred = true;
     } else {
@@ -52,19 +52,30 @@ function CreatePost({ isAuth }) {
       return; // Stop function execution if any error occurred
     }
 
-    const fileUrl = URL.createObjectURL(selectedFile); // Generating a URL for preview or other purposes
-    
-    try {
-      await addDoc(postsCollectionRef, {
-        title,
-        description,
-        selectedFile: fileUrl,
-        author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
-      });
-      navigate("/");
-    } catch (error) {
-      console.log(error)
-    }
+
+
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+
+  try {
+    // Upload image to Firebase Storage
+    await uploadBytes(imageRef, imageUpload);
+
+    // Get download URL of the uploaded image
+    const imageUrl = await getDownloadURL(imageRef);
+
+    // Add document to Firestore collection with image URL
+    await addDoc(postsCollectionRef, {
+      title,
+      description,
+      imageUrl, // Include image URL in Firestore document
+      author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+    });
+
+    alert('Post created successfully');
+    navigate("/");
+  } catch (error) {
+    console.log(error);
+  }
   };
 
   useEffect(() => {
@@ -96,7 +107,7 @@ function CreatePost({ isAuth }) {
           fullWidth
           multiline
         />
-        <input type="file" onChange={handleFileUpload} />
+        <input type="file" onChange={(event) => {setImageUpload(event.target.files[0])}} />
         {fileError && <p style={{ color: "red" }}>{fileError}</p>} {/* Display file error message */}
         <Button onClick={createPost} variant="contained" size="large" fullWidth>Create Post</Button>
       </div>
