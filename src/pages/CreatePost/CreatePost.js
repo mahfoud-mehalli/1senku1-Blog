@@ -19,6 +19,7 @@ function CreatePost({ isAuth }) {
 
 
   const postsCollectionRef = collection(db, "posts");
+  
   let navigate = useNavigate();
 
   const createPost = async () => {
