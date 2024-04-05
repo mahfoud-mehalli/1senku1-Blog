@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.updatePostPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.CPupdatePostPage {
+    width: 400px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.CPupdatePostPage h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.CPupdatePostPage .MuiTextField-root {
+    margin-bottom: 20px;
+}
+
+
+.CPupdatePostPage p {
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 24px;
+}

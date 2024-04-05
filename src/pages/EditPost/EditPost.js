@@ -58,7 +58,8 @@ function EditPost({ postId }) {
   };
 
   return (
-    <div>
+    <div className="updatePostPage">
+      <div className="CPupdatePostPage">
       <h1>Edit Post</h1>
       <TextField
         value={title}
@@ -73,9 +74,11 @@ function EditPost({ postId }) {
         fullWidth
         multiline
       />
-      <Button onClick={updatePost} variant="contained" color="primary">
+      <p>The Image Can't Be Changed</p>
+      <Button onClick={updatePost} variant="contained" size="large" fullWidth>
         Update
       </Button>
+      </div>
     </div>
   );
 }
