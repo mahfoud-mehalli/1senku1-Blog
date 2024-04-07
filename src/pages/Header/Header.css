@@ -8,7 +8,7 @@ header {
     /* Change the background color as needed */
     color: var(--white);
     /* Change the text color as needed */
-    padding: 16px 240px;
+    padding: 16px 200px;
     /* Adjust padding as needed */
     display: flex;
     justify-content: space-between;
@@ -38,4 +38,23 @@ button {
 
 button:hover {
     color: dodgerblue;
+}
+
+@media screen and (max-width: 1000px) {
+    header {
+        padding: 16px 120px; /* Adjust padding for smaller screens */
+    }
+}
+@media screen and (max-width: 650px) {
+    header {
+        padding: 16px 80px; /* Adjust padding for smaller screens */
+    }
+}
+@media screen and (max-width: 650px) {
+    header{
+        justify-content: center;
+    }
+    header > h1{
+        display: none;
+    }
 }

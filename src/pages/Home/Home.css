@@ -86,3 +86,30 @@
     margin-top: 10px;
     font-size: 0.9em;
 }
+
+@media screen and (max-width: 1000px) {
+    html {
+        font-size:14px;
+    }
+    .postsContainer {
+        gap: 10px;
+    }
+    .post {
+        max-width: 43%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .postsContainer {
+        gap: 8px;
+    }
+    .post {
+        max-width: 70%;
+    }
+    .title-delete {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        flex-direction: column;
+    }
+}
