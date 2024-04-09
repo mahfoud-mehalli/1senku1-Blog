@@ -37,7 +37,7 @@ const Home = ({ isAuth }) => {
       {postLists.map((post) => {
           return(
             <div className="post" key={post.id}>
-              <img src={post.imageUrl} alt="Post Pic" />
+              <img src={post.imageUrl} alt="Post Pic" style={{ objectPosition: 'center', objectFit: 'cover', backgroundRepeat: 'no-repeat' }} />
               <div className="post-info">
                 <div className="title-delete">
                   <h1>{post.title}</h1>
